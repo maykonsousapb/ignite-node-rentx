@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
 export class CreateCategoryController {
   // eslint-disable-next-line prettier/prettier
-  constructor(private createCategoryUseCase: CreateCategoryUseCase) { }
-  handle(req: Request, res: Response) {
+  async handle(req: Request, res: Response): Promise<Response> {
     const { name, description } = req.body;
-
+    const createCategoryUseCase = container.resolve(CreateCategoryUseCase);
     try {
-      const category = this.createCategoryUseCase.execute({
+      const category = await createCategoryUseCase.execute({
         name,
         description,
       });
