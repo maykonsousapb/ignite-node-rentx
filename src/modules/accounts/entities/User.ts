@@ -10,9 +10,6 @@ export class User {
   name: string;
 
   @Column()
-  username: string;
-
-  @Column()
   email: string;
 
   @Column()
@@ -23,6 +20,9 @@ export class User {
 
   @Column()
   isAdmin: boolean;
+
+  @Column()
+  avatar: string;
 
   @Column()
   created_at: Date;

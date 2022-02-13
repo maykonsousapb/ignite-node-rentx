@@ -15,19 +15,18 @@ export class CreateUserTable1643909309101 implements MigrationInterface {
             name: "name",
             type: "varchar",
           },
+
           {
-            name: "username",
+            name: "email",
             type: "varchar",
             isUnique: true,
           },
+
           {
             name: "password",
             type: "varchar",
           },
-          {
-            name: "email",
-            type: "varchar",
-          },
+
           {
             name: "driver_license",
             type: "varchar",
@@ -37,6 +36,7 @@ export class CreateUserTable1643909309101 implements MigrationInterface {
             type: "boolean",
             default: false,
           },
+          { name: "avatar", type: "varchar", isNullable: true },
           {
             name: "created_at",
             type: "timestamp",

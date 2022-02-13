@@ -1,19 +1,20 @@
 import { Router } from "express";
 import multer from "multer";
 
+import uploadConfig from "../config/upload";
+import { EnsureAutheticated } from "../middlewares/EnsureAutheticated";
 import { CreateCategoryController } from "../modules/cars/useCases/createCategory/CreateCategoryController";
 import { ImportCategoriesController } from "../modules/cars/useCases/importCategories/ImportCategoriesController";
 import { ListCategoriesController } from "../modules/cars/useCases/listCategories/ListCategoriesController";
 
 export const categoriesRoutes = Router();
-const upload = multer({
-  dest: "./tmp",
-});
+const upload = multer(uploadConfig.upload("./tmp"));
 
 const createCategoryController = new CreateCategoryController();
 const listCategoriesController = new ListCategoriesController();
 const importCategoriesController = new ImportCategoriesController();
 
+categoriesRoutes.use(EnsureAutheticated);
 categoriesRoutes.post("/", createCategoryController.handle);
 categoriesRoutes.post(
   "/import",
