@@ -1,11 +1,12 @@
 /* eslint-disable no-use-before-define */
 import { Repository, getRepository } from "typeorm";
 
-import { Category } from "../../entities/Category";
 import {
   ICategoriesRepository,
   ICreateCategoryDTO,
-} from "../IcategoriesRepository";
+} from "@modules/cars/repositories/IcategoriesRepository";
+
+import { Category } from "../entities/Category";
 
 export class CategoriesRepository implements ICategoriesRepository {
   private repository: Repository<Category>;
@@ -32,6 +33,11 @@ export class CategoriesRepository implements ICategoriesRepository {
 
   async findByName(name: string): Promise<Category> {
     const category = await this.repository.findOne({ name });
+    return category;
+  }
+
+  async findById(id: string): Promise<Category> {
+    const category = await this.repository.findOne(id);
     return category;
   }
 }

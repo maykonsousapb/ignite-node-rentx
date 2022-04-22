@@ -1,11 +1,12 @@
 import { hash } from "bcrypt";
 import { inject, injectable } from "tsyringe";
 
-import { User } from "../../entities/User";
 import {
   ICreateUserDTO,
   IUsersRepository,
-} from "../../repositories/IUsersRepository";
+} from "@modules/accounts/repositories/IUsersRepository";
+
+import { User } from "../../infra/typeorm/entities/User";
 
 @injectable()
 export class CreateUserUseCase {
@@ -37,7 +38,7 @@ export class CreateUserUseCase {
       avatar,
       user_id,
     });
-    delete user.password;
+
     return user;
   }
 }
