@@ -28,4 +28,12 @@ export class SpecificationsRepositoryInMemory
     this.specifications.push(specification);
     return specification;
   }
+
+  async findByIds(ids: string[]): Promise<Specification[]> {
+    const specifications = this.specifications.filter((specification) =>
+      ids.includes(specification.id)
+    );
+
+    return specifications;
+  }
 }

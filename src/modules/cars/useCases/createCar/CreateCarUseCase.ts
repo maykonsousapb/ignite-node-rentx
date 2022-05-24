@@ -14,7 +14,7 @@ interface IRequest {
 }
 
 @injectable()
-export class CreateCarUseCase {
+class CreateCarUseCase {
   constructor(
     @inject("CarsRepository")
     private carsRepository: ICarsRepository
@@ -29,13 +29,14 @@ export class CreateCarUseCase {
     brand,
     category_id,
   }: IRequest): Promise<Car> {
-    const carAlreadyExists = await this.carsRepository.findByLicencePlate(
+    const carAlreadyExists = await this.carsRepository.findByLicensePlate(
       license_plate
     );
 
     if (carAlreadyExists) {
-      throw new Error("Car already exists");
+      throw new Error("Car already exists!");
     }
+
     const car = await this.carsRepository.create({
       name,
       description,
@@ -45,6 +46,9 @@ export class CreateCarUseCase {
       brand,
       category_id,
     });
+
     return car;
   }
 }
+
+export { CreateCarUseCase };
