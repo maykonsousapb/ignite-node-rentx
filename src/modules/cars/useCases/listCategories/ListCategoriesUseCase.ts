@@ -4,7 +4,6 @@ import { ICategoriesRepository } from "../../repositories/IcategoriesRepository"
 
 @injectable()
 export class ListCategoriesUseCase {
-  // eslint-disable-next-line prettier/prettier
   constructor(
     @inject("CategoriesRepository")
     private categoriesRepository: ICategoriesRepository

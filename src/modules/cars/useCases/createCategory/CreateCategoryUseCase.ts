@@ -20,7 +20,7 @@ export class CreateCategoryUseCase {
       name
     );
     if (categoryAlreadyExists) {
-      throw new Error("Category already existt");
+      throw new Error("Category already exists");
     }
     const category = await this.categoriesRepository.create({
       name,

@@ -28,7 +28,6 @@ export class AuthenticateUserUseCase {
     if (!user) {
       throw new Error("User not found");
     }
-    console.log(user);
     const passwordMatch = await compare(password, user.password);
     if (!user || !passwordMatch) {
       throw new Error("email/passoword combination is wrong!");

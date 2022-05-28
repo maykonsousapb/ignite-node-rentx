@@ -14,7 +14,7 @@ export const EnsureAutheticated = (
 ) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
-    res.status(500).json({ error: "Token is missing" });
+    res.status(401).json({ error: "Token is missing" });
   }
   const [, token] = authHeader.split(" ");
 
@@ -33,6 +33,6 @@ export const EnsureAutheticated = (
     };
     next();
   } catch {
-    res.status(500).json({ error: "token is invalid" });
+    res.status(401).json({ error: "token is invalid" });
   }
 };
